@@ -1,7 +1,7 @@
 package com.hopes.connect.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -65,6 +65,47 @@ public class ClientService implements AbstractModel {
 		this.subStartDate = subStartDate;
 		this.subEndDate = subEndDate;
 	}
+
+	public ClientServiceId getClientServiceId() {
+		return clientServiceId;
+	}
+
+	public void setClientServiceId(ClientServiceId clientServiceId) {
+		this.clientServiceId = clientServiceId;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public Service getService() {
+		return service;
+	}
+
+	public void setService(Service service) {
+		this.service = service;
+	}
+
+	public Date getSubStartDate() {
+		return subStartDate;
+	}
+
+	public void setSubStartDate(Date subStartDate) {
+		this.subStartDate = subStartDate;
+	}
+
+	public Date getSubEndDate() {
+		return subEndDate;
+	}
+
+	public void setSubEndDate(Date subEndDate) {
+		this.subEndDate = subEndDate;
+	}
+
 }
 
 @Embeddable
@@ -72,7 +113,7 @@ class ClientServiceId implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
+	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CLIENT_SERVICE_ID")
 	private Long clientServiceId;
