@@ -28,7 +28,7 @@ enum ClientStatus {
 
 @Entity
 @Table(name = "client")
-public class Client implements AbstractModel {
+public class Client implements MetaEntity {
 
 	/**
 	 *
@@ -57,7 +57,6 @@ public class Client implements AbstractModel {
 	@Column(name = "IS_ACTIVE")
 	private ClientStatus isActive;
 
-	@NotNull
 	@Column(name = "DOMAIN")
 	private String domain;
 

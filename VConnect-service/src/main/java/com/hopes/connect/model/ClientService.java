@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
@@ -21,11 +20,13 @@ import javax.validation.constraints.NotNull;
 
 /**
  * @author SaNNy - Sep 8, 2018
+ * 
+ * desc: Many to many mapping entity for business service and client, not to be mistaken for a service implementation
  */
 
 @Entity
 @Table(name = "client_service")
-public class ClientService implements AbstractModel {
+public class ClientService implements MetaEntity {
 
 	/**
 	 * 

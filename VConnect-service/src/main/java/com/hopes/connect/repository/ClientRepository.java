@@ -12,4 +12,12 @@ import com.hopes.connect.model.Client;
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
+	/**
+	 * 
+	 * @param clientRegId
+	 * @return Client having the supplied registration id
+	 * 
+	 */
+	public Client findByClientRegId(String clientRegId);
+
 }

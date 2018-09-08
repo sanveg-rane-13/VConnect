@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "user_info")
-public class UserInfo implements AbstractModel {
+public class UserInfo implements MetaEntity {
 
 	/**
 	 * 
