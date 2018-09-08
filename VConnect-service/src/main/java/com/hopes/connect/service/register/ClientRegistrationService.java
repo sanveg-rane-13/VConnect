@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.hopes.connect.model.Client;
 import com.hopes.connect.model.MetaEntity;
+import com.hopes.connect.model.exception.ErrorCode;
+import com.hopes.connect.model.exception.RegistrationException;
 import com.hopes.connect.repository.ClientRepository;
 import com.hopes.connect.service.utility.BaseUtilityService;
 
@@ -32,16 +34,18 @@ public class ClientRegistrationService implements RegistrationService {
 		}
 
 		Client client = (Client) entity;
-		String clientRegId = (client != null) ? client.getClientRegId() : null;
 		
-		if(clientRegId == null || "".equals(clientRegId)) {
-			LOGGER.error("Client Registration Id must not be null");
-			return false;
+		String clientRegId = client.getClientRegId();
+		String clientName = client.getClientName();
+		
+		if(clientRegId == null || "".equals(clientRegId) || clientName == null || "".equals(clientName)) {
+			String errorCode = ErrorCode.ONE.toString();
+			throw new RegistrationException(errorCode);
 		}
 
 		if (!this.baseUtilityService.isClientRegIdUnique(clientRegId)) {
-			LOGGER.error("Client Registration Id must be unique");
-			return false;
+			String errorCode = ErrorCode.TWO.toString();
+			throw new RegistrationException(errorCode);
 		}
 
 		return true;
