@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hopes.connect.repository.ClientRepository;
+import com.hopes.connect.repository.ServiceRepository;
 import com.hopes.connect.service.register.ClientRegistrationService;
 
 /**
@@ -21,16 +22,28 @@ public class BaseUtilityServiceImpl implements BaseUtilityService {
 
 	@Autowired
 	private ClientRepository clientRepository;
+	
+	@Autowired
+	private ServiceRepository serviceRepository;
 
 	private static Logger LOGGER = Logger.getLogger(ClientRegistrationService.class);
 
 	@Override
 	public boolean isClientRegIdUnique(String regId) {
 		if (regId == null || "".equals(regId)) {
-			LOGGER.error("Null RegID received");
+			LOGGER.error("Registration ID null while checking unique");
 			return false;
 		}
 		return (clientRepository.findByClientRegId(regId) != null) ? false : true;
+	}
+	
+	@Override
+	public boolean isServiceUnique(String serviceName) {
+		if(serviceName == null || "".equals(serviceName)) {
+			LOGGER.error("Service Name null while checking unique");
+			return false;
+		}
+		return (serviceRepository.findByServiceName(serviceName) != null) ? false : true;
 	}
 
 }

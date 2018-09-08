@@ -8,9 +8,9 @@ package com.hopes.connect.model.exception;
 public enum ErrorCode {
 	
 	ZERO("Generic exception"),
-	ONE("Null Values in Client Registration"),
-	TWO("Client Name Duplicate"),
-	THREE("Client Registration ID Duplicate");
+	ONE("Required values NULL while registration"),
+	TWO("Value Duplicate"),
+	THREE("Incorrect identity type");
 
 	private final String value;
 

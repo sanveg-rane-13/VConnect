@@ -12,4 +12,12 @@ import com.hopes.connect.model.Service;
 @Repository
 public interface ServiceRepository extends JpaRepository<Service, Long> {
 
+	/**
+	 * 
+	 * @param serviceName
+	 * @return Service having supplied service name
+	 * 
+	 */
+	public Service findByServiceName(String serviceName);
+
 }

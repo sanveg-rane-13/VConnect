@@ -1,54 +1,48 @@
 package com.hopes.connect.service.register;
 
+import java.util.Date;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import com.hopes.connect.model.Client;
 import com.hopes.connect.model.MetaEntity;
+import com.hopes.connect.model.Service;
 import com.hopes.connect.model.exception.ErrorCode;
 import com.hopes.connect.model.exception.RegistrationException;
-import com.hopes.connect.repository.ClientRepository;
+import com.hopes.connect.repository.ServiceRepository;
 import com.hopes.connect.service.utility.BaseUtilityService;
 
 /**
  * @author SaNNy - Sep 8, 2018
  */
 
-@Service("clientRegistrationService")
-public class ClientRegistrationService implements RegistrationService {
+@org.springframework.stereotype.Service("serviceRegistrationService")
+public class ServiceRegistrationService implements RegistrationService {
 
 	@Autowired
-	private ClientRepository clientRepository;
+	private ServiceRepository serviceRepository;
 
 	@Autowired
 	private BaseUtilityService baseUtilityService;
 
-	private static Logger LOGGER = Logger.getLogger(ClientRegistrationService.class);
+	private static Logger LOGGER = Logger.getLogger(ServiceRegistrationService.class);
 
 	@Override
 	public boolean validateEntity(MetaEntity entity) {
-		if (!(entity instanceof Client)) {
+		if (!(entity instanceof Service)) {
 			String errorCode = ErrorCode.THREE.toString(); // error code if entity type miss match
 			throw new RegistrationException(errorCode);
 		}
 
-		Client client = (Client) entity;
+		Service service = (Service) entity;
+		String serviceName = service.getServiceName();
 
-		String clientRegId = client.getClientRegId();
-		String clientName = client.getClientName();
-
-		if (clientRegId == null || "".equals(clientRegId) || clientName == null || "".equals(clientName)) {
+		if (serviceName == null || "".equals(serviceName)) {
 			String errorCode = ErrorCode.ONE.toString(); // error code for null value
 			throw new RegistrationException(errorCode);
 		}
 
-		if (!this.baseUtilityService.isClientRegIdUnique(clientRegId)) {
-			String errorCode = ErrorCode.TWO.toString(); // error code for duplicate value
-			throw new RegistrationException(errorCode);
-		}
-
-		if (this.clientRepository.findByClientName(clientName) != null) {
+		if (!this.baseUtilityService.isServiceUnique(serviceName)) {
 			String errorCode = ErrorCode.TWO.toString(); // error code for duplicate value
 			throw new RegistrationException(errorCode);
 		}
@@ -59,11 +53,13 @@ public class ClientRegistrationService implements RegistrationService {
 	@Override
 	public void registerEntity(MetaEntity entity) {
 		if (this.validateEntity(entity)) {
-			Client clientToRegister = (Client) entity;
+			Service serviceToRegister = (Service) entity;
 
-			LOGGER.info("Registering client: " + clientToRegister.getClientName());
-			clientRepository.save(clientToRegister);
+			serviceToRegister.setStartDate(new Date());
+			LOGGER.info("Registering new Service: " + serviceToRegister.getServiceName());
+			serviceRepository.save(serviceToRegister);
 		}
+
 	}
 
 }
