@@ -21,17 +21,17 @@ import com.hopes.connect.service.utility.BaseUtilityService;
  * @author SaNNy - Sep 10, 2018
  */
 
-@org.springframework.stereotype.Service("clientServiceRegistration")
-public class ClientServiceRegistration implements RegistrationService {
+@org.springframework.stereotype.Service("clientServiceRegistrationService")
+public class ClientServiceRegistrationService implements RegistrationService {
 
 	@Autowired
-	ClientRepository clientRepository;
+	private ClientRepository clientRepository;
 
 	@Autowired
-	ServiceRepository serviceRepository;
+	private ServiceRepository serviceRepository;
 
 	@Autowired
-	ClientServiceRepository clientServiceRepository;
+	private ClientServiceRepository clientServiceRepository;
 
 	@Autowired
 	private BaseUtilityService baseUtilityService;

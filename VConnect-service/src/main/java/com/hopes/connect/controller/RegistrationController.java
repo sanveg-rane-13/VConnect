@@ -32,7 +32,7 @@ public class RegistrationController {
 	private RegistrationService serviceRegistrationService;
 	
 	@Autowired
-	private RegistrationService clientServiceRegistration;
+	private RegistrationService clientServiceRegistrationService;
 
 	@Autowired
 	private BaseUtilityService baseUtilityService;
@@ -80,7 +80,7 @@ public class RegistrationController {
 	public void registerClientToService(@RequestBody ClientService clientService) {
 		long startTime = System.currentTimeMillis();
 		
-		clientServiceRegistration.registerEntity(clientService);
+		clientServiceRegistrationService.registerEntity(clientService);
 		
 		long endTime = System.currentTimeMillis();
 		LOGGER.info("Time taken to register a client to a service: " + (endTime - startTime) + " millis");
