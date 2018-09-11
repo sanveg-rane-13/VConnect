@@ -1,16 +1,19 @@
 package com.hopes.connect.model.exception;
 
 /**
+ * Enum to suggest possible causes of custom exceptions on service side
+ * 
  * @author SaNNy - Sep 8, 2018
  * 
- * desc: Enum to suggest possible causes of custom exceptions on service side
  */
 public enum ErrorCode {
 	
 	ZERO("Generic exception"),
 	ONE("Required values NULL while registration"),
 	TWO("Value Duplicate"),
-	THREE("Incorrect identity type");
+	THREE("Incorrect identity type"),
+	FOUR("Incorrect service - client registration attempt"),
+	FIVE("Client - Service relation already registered");
 
 	private final String value;
 

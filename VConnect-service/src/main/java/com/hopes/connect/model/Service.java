@@ -1,6 +1,7 @@
 package com.hopes.connect.model;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -45,7 +46,7 @@ public class Service implements MetaEntity {
 	private Date startDate;
 
 	@OneToMany(mappedBy = "service", cascade = CascadeType.REMOVE, orphanRemoval = true)
-	private Set<ClientService> clientService;
+	private Set<ClientService> clients;
 
 	public Service() {
 	}
@@ -56,6 +57,7 @@ public class Service implements MetaEntity {
 		this.serviceName = serviceName;
 		this.serviceDescription = serviceDescription;
 		this.startDate = startDate;
+		this.clients = new HashSet<>();
 	}
 
 	public Long getServiceId() {

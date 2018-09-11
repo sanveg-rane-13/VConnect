@@ -19,8 +19,8 @@ public class RegistrationException extends RuntimeException {
 	 * 
 	 * Handle invalid data from request when registering new clients or users 
 	 */
-	public RegistrationException(String message) {
-		super(message);
+	public RegistrationException(String errorCode) {
+		super(errorCode);
 	}
 
 }

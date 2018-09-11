@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hopes.connect.model.Client;
+import com.hopes.connect.model.ClientService;
 import com.hopes.connect.model.Service;
 import com.hopes.connect.service.register.RegistrationService;
 import com.hopes.connect.service.utility.BaseUtilityService;
@@ -29,6 +30,9 @@ public class RegistrationController {
 
 	@Autowired
 	private RegistrationService serviceRegistrationService;
+	
+	@Autowired
+	private RegistrationService clientServiceRegistration;
 
 	@Autowired
 	private BaseUtilityService baseUtilityService;
@@ -66,9 +70,19 @@ public class RegistrationController {
 		long endTime = System.currentTimeMillis();
 		LOGGER.info("Time taken to register new business service: " + (endTime - startTime) + " millis");
 	}
-	
+
 	@RequestMapping(value = "/checkServiceName", method = RequestMethod.POST)
 	public boolean checkUniqueServiceName(@RequestBody String serviceName) {
 		return baseUtilityService.isServiceUnique(serviceName);
+	}
+
+	@RequestMapping(value = "/clientService", method = RequestMethod.POST)
+	public void registerClientToService(@RequestBody ClientService clientService) {
+		long startTime = System.currentTimeMillis();
+		
+		clientServiceRegistration.registerEntity(clientService);
+		
+		long endTime = System.currentTimeMillis();
+		LOGGER.info("Time taken to register a client to a service: " + (endTime - startTime) + " millis");
 	}
 }

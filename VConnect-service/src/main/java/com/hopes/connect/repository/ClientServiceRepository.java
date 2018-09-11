@@ -12,4 +12,12 @@ import com.hopes.connect.model.ClientService;
 @Repository
 public interface ClientServiceRepository extends JpaRepository<ClientService, Long> {
 
+	/**
+	 * 
+	 * @param clientId
+	 * @param serviceId
+	 * @return ClientService
+	 */
+	public ClientService findByClient_ClientIdAndService_ServiceId(Long clientId, Long serviceId);
+
 }

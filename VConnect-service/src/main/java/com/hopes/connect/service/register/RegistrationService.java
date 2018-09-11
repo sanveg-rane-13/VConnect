@@ -1,5 +1,7 @@
 package com.hopes.connect.service.register;
 
+import org.apache.log4j.Logger;
+
 import com.hopes.connect.model.MetaEntity;
 
 /**
@@ -7,6 +9,8 @@ import com.hopes.connect.model.MetaEntity;
  */
 public interface RegistrationService {
 
+	static Logger LOGGER = Logger.getLogger(RegistrationService.class); 
+	
 	/**
 	 * 
 	 * @param entity

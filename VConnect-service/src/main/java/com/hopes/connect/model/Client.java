@@ -1,5 +1,7 @@
 package com.hopes.connect.model;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -41,7 +43,7 @@ public class Client implements MetaEntity {
 	private Long clientId;
 
 	@NotNull
-	@Column(name = "CLIENT_NAME")
+	@Column(name = "CLIENT_NAME", unique = true)
 	private String clientName;
 
 	@NotNull
@@ -73,15 +75,14 @@ public class Client implements MetaEntity {
 	private List<User> users;
 
 	@OneToMany(mappedBy = "client", cascade = CascadeType.REMOVE, orphanRemoval = true)
-	private Set<ClientService> clientService;
+	private Set<ClientService> services;
 
 	public Client() {
 	}
 
-	public Client(Long clientId, String clientName, String clientRegId, String clientPassword, ClientStatus isActive,
-			String domain, String email, String phone) {
+	public Client(String clientName, String clientRegId, String clientPassword, ClientStatus isActive, String domain,
+			String email, String phone) {
 		super();
-		this.clientId = clientId;
 		this.clientName = clientName;
 		this.clientRegId = clientRegId;
 		this.clientPassword = clientPassword;
@@ -89,6 +90,8 @@ public class Client implements MetaEntity {
 		this.domain = domain;
 		this.email = email;
 		this.phone = phone;
+		this.users = new ArrayList<>();
+		this.services = new HashSet<>();
 	}
 
 	public Long getClientId() {

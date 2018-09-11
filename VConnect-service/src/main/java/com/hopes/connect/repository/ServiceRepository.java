@@ -19,5 +19,12 @@ public interface ServiceRepository extends JpaRepository<Service, Long> {
 	 * 
 	 */
 	public Service findByServiceName(String serviceName);
+	
+	/**
+	 * 
+	 * @param serviceId
+	 * @return Service having supplied service ID
+	 */
+	public Service findByServiceId(Long serviceId);
 
 }
