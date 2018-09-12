@@ -11,5 +11,13 @@ import com.hopes.connect.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-
+	
+	/**
+	 * 
+	 * 
+	 * @param userRegId
+	 * @return User
+	 */
+	public User findByUserRegId(String userRegId);
+	
 }

@@ -37,4 +37,13 @@ public interface BaseUtilityService {
 	 */
 	public boolean isClientServiceUnique(Long clientId, Long serviceId);
 
+	/**
+	 * Checks if user reg id passed is unique my checking against entries in
+	 * database
+	 * 
+	 * @param regId
+	 * @return
+	 */
+	public boolean isUserRegIdUnique(String regId);
+
 }

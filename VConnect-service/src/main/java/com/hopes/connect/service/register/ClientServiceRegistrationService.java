@@ -4,7 +4,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.hopes.connect.model.Client;
 import com.hopes.connect.model.ClientService;
@@ -79,7 +78,6 @@ public class ClientServiceRegistrationService implements RegistrationService {
 	}
 
 	@Override
-	@Transactional
 	public void registerEntity(MetaEntity entity) {
 		if (this.validateEntity(entity)) {
 

@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hopes.connect.model.Client;
 import com.hopes.connect.model.ClientService;
 import com.hopes.connect.model.Service;
+import com.hopes.connect.model.User;
 import com.hopes.connect.service.register.RegistrationService;
+import com.hopes.connect.service.register.UserRegistrationService;
 import com.hopes.connect.service.utility.BaseUtilityService;
 
 /**
@@ -30,9 +32,12 @@ public class RegistrationController {
 
 	@Autowired
 	private RegistrationService serviceRegistrationService;
-	
+
 	@Autowired
 	private RegistrationService clientServiceRegistrationService;
+
+	@Autowired
+	private UserRegistrationService userRegistrationService;
 
 	@Autowired
 	private BaseUtilityService baseUtilityService;
@@ -48,6 +53,7 @@ public class RegistrationController {
 
 	@RequestMapping(value = "/client", method = RequestMethod.POST)
 	public void registerClient(@RequestBody @Valid Client client) {
+		LOGGER.info("*** Registering client ***");
 		long startTime = System.currentTimeMillis();
 
 		clientRegistrationService.registerEntity(client);
@@ -63,6 +69,7 @@ public class RegistrationController {
 
 	@RequestMapping(value = "/service", method = RequestMethod.POST)
 	public void registerService(@RequestBody @Valid Service service) {
+		LOGGER.info("*** Registering service ***");
 		long startTime = System.currentTimeMillis();
 
 		serviceRegistrationService.registerEntity(service);
@@ -78,11 +85,28 @@ public class RegistrationController {
 
 	@RequestMapping(value = "/clientService", method = RequestMethod.POST)
 	public void registerClientToService(@RequestBody ClientService clientService) {
+		LOGGER.info("*** Registering service to client ***");
+		long startTime = System.currentTimeMillis();
+
+		clientServiceRegistrationService.registerEntity(clientService);
+
+		long endTime = System.currentTimeMillis();
+		LOGGER.info("Time taken to register a service to a client: " + (endTime - startTime) + " millis");
+	}
+
+	@RequestMapping(value = "/user", method = RequestMethod.POST)
+	public void registerUser(@RequestBody User user) {
+		LOGGER.info("*** Registering user ***");
 		long startTime = System.currentTimeMillis();
 		
-		clientServiceRegistrationService.registerEntity(clientService);
+		userRegistrationService.registerEntity(user);
 		
 		long endTime = System.currentTimeMillis();
-		LOGGER.info("Time taken to register a client to a service: " + (endTime - startTime) + " millis");
+		LOGGER.info("Time taken to register an user: " + (endTime - startTime) + " millis");
+	}
+
+	@RequestMapping(value = "/checkUserReg", method = RequestMethod.POST)
+	public boolean checkUniqueUserRegistration(@RequestBody String userRegId) {
+		return baseUtilityService.isUserRegIdUnique(userRegId);
 	}
 }

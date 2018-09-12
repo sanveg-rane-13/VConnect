@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.hopes.connect.repository.ClientRepository;
 import com.hopes.connect.repository.ClientServiceRepository;
 import com.hopes.connect.repository.ServiceRepository;
+import com.hopes.connect.repository.UserRepository;
 import com.hopes.connect.service.register.ClientRegistrationService;
 
 /**
@@ -27,6 +28,9 @@ public class BaseUtilityServiceImpl implements BaseUtilityService {
 
 	@Autowired
 	private ServiceRepository serviceRepository;
+
+	@Autowired
+	private UserRepository userRepository;
 
 	@Autowired
 	private ClientServiceRepository clientServiceRepository;
@@ -59,6 +63,16 @@ public class BaseUtilityServiceImpl implements BaseUtilityService {
 		}
 		return (clientServiceRepository.findByClient_ClientIdAndService_ServiceId(clientId, serviceId) != null) ? false
 				: true;
+	}
+
+	@Override
+	public boolean isUserRegIdUnique(String regId) {
+		if (regId == null || "".equals(regId)) {
+			LOGGER.error("User registration id null while checking unique");
+			return false;
+		}
+		return (userRepository.findByUserRegId(regId) != null) ? false : true;
+
 	}
 
 }
