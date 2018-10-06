@@ -11,5 +11,12 @@ import com.hopes.connect.model.UserInfo;
 
 @Repository
 public interface UserInfoRepository extends JpaRepository<UserInfo, Long> {
-
+	
+	/**
+	 * 
+	 * @param userId
+	 * @return user info of passed user id
+	 */
+	public UserInfo findByUser_UserId(long userId);
+	
 }

@@ -1,5 +1,7 @@
 package com.hopes.connect.service.utility;
 
+import org.springframework.web.multipart.MultipartFile;
+
 /**
  * 
  * Basic utility methods to be provided by all implementations
@@ -45,5 +47,13 @@ public interface BaseUtilityService {
 	 * @return
 	 */
 	public boolean isUserRegIdUnique(String regId);
+
+	/**
+	 * Add of update profile image of a registered user
+	 * 
+	 * @param profileImage
+	 * @param userRegId
+	 */
+	public void saveUserProfileImage(MultipartFile profileImage, String userRegId);
 
 }

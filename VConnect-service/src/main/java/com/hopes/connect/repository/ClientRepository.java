@@ -19,19 +19,27 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 	 * 
 	 */
 	public Client findByClientRegId(String clientRegId);
-	
+
 	/**
 	 * 
 	 * @param clientName
 	 * @return Client having the supplied name
 	 */
 	public Client findByClientName(String clientName);
-	
+
 	/**
 	 * 
 	 * @param clientId
 	 * @return Client having the supplied ID
 	 */
 	public Client findByClientId(Long clientId);
+
+	/**
+	 * 
+	 * @param clientId
+	 * @param clientRegId
+	 * @return Client having the supplied ID and regId
+	 */
+	public Client findByClientIdAndClientRegId(Long clientId, String clientRegId);
 
 }

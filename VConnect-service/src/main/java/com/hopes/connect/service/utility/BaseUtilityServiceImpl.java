@@ -3,6 +3,7 @@ package com.hopes.connect.service.utility;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hopes.connect.repository.ClientRepository;
 import com.hopes.connect.repository.ClientServiceRepository;
@@ -74,5 +75,12 @@ public class BaseUtilityServiceImpl implements BaseUtilityService {
 		return (userRepository.findByUserRegId(regId) != null) ? false : true;
 
 	}
+	
+	@Override
+	public void saveUserProfileImage(MultipartFile profileImage, String userRegId) {
+		
+	}
+	
+	
 
 }

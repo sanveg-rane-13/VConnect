@@ -13,7 +13,9 @@ public enum ErrorCode {
 	TWO("Value Duplicate"),
 	THREE("Incorrect identity type"),
 	FOUR("Incorrect service - client registration attempt"),
-	FIVE("Client - Service relation already registered");
+	FIVE("Client - Service relation already registered"),
+	SIX("Client not registered"),
+	SEVEN("User not registered to any Client");
 
 	private final String value;
 

@@ -9,4 +9,5 @@ public class VConnectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(VConnectApplication.class, args);
 	}
+
 }
